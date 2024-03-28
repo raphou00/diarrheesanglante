@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/logo.png" type="image/png">
+        <link rel="stylesheet" href="autres/fontawesome/css/all.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Diarrhée Sanglante | Résultat</title>
+    </head>
+    <body>
+
+        <section class="box-accueil">
+            <h1 class="titre">Dhiarree Sanglante</h1>
+
+            <div class="box-parametre" id="boxParametre">
+                <h2 class="stats-titre"></h2>
+                <ul class="stats-joueur">
+                    <li class="stats">Score: <span id="score"></span></li>
+                    <li class="stats">Temps: <span id="temps"></span>s</li>
+                    <li class="stats">Nombres énnemis Tués: <span id="nbr-ennemis-tues"></span></li>
+                    <li class="stats">Nombres énnemis:  <span id="nbr-ennemis"></span></li>
+                    <li class="stats">Nombres tire(s): <span id="nbr-tires"></span></li>
+                    <li class="stats">Ratio: <span id="ratio"></span></li>
+                </ul>
+            </div>
+
+            <button class="btn-jouer" onclick="accueil()">Accueil</button>
+        </section>
+
+
+        <script>
+            let boolGagne = document.querySelector(".stats-titre");
+            let nbrEnnemisTues = document.querySelector("#nbr-ennemis-tues");
+            let nbrEnnemis = document.querySelector("#nbr-ennemis");
+            let nbrTires = document.querySelector("#nbr-tires");
+            let score = document.querySelector("#score");
+            let temps = document.querySelector("#temps");
+            let ratio = document.querySelector("#ratio");
+            let cmusique;
+
+            nbrEnnemisTues.innerHTML = sessionStorage.getItem("nbrEnnemisTues");
+            nbrEnnemis.innerHTML = sessionStorage.getItem("nbrEnnemis");
+            nbrTires.innerHTML = sessionStorage.getItem("nbrTires");
+            score.innerHTML = sessionStorage.getItem("score");
+            temps.innerHTML = sessionStorage.getItem("temps");
+            ratio.innerHTML = sessionStorage.getItem("ratio");
+
+            if (sessionStorage.getItem("boolGagne") == "gagne") {
+                boolGagne.innerHTML = "Victoire !";
+                boolGagne.style.color = "green";
+                cmusique = "son/son_victoire.mp3";
+            } else if (sessionStorage.getItem("boolGagne") == "perdu") {
+                boolGagne.innerHTML = "Défaite !";
+                boolGagne.style.color = "red";
+                cmusique = "son/son_defaite.mp3";
+            }
+            
+            let musique = new Audio(cmusique);
+            musique.play();
+            musique.volume = 0.1;
+            
+            let boxParametre = document.getElementById("boxParametre");
+            boxParametre.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+
+            function accueil() {
+                document.location.replace("index.html");
+            }
+        </script>
+    </body>
+</html>

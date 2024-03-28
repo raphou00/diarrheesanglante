@@ -1,0 +1,201 @@
+@font-face {
+    font-family: pixel;
+    src: url(autres/pixel.ttf);
+}
+
+body {
+    margin: 0;
+    background-image: url(img/fond.png);
+    background-size: cover;
+    overflow: hidden;
+    transition: 2s;
+}
+
+:root {
+    --bleu: #2d88ff;
+    --bleu-clair: #6af0f9;
+    --rose: #7c4185;
+}
+
+* {
+    font-family: pixel;
+    font-size: 13pt;
+    color: white;
+    user-select: none;
+}
+
+
+/* Jeu */
+
+.joueur {
+    height: 100px;
+    width: 75px;
+    background-size: cover;
+    position: fixed;
+    z-index: 1;
+}
+
+.ennemi {
+    height: 100px;
+    width: 100px;
+    background-image: url(img/ennemi.png);
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.bonus {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+}
+
+.rebels {
+    height: 100px;
+    width: 75px;
+    background-image: url(img/rebel.png);
+    transform: scaleY(-1);
+    background-size: cover;
+    position: absolute;
+    transition: 0.5s ease-in;
+    z-index: 1;
+}
+
+.tire {
+    height: 50px;
+    width: 50px;
+    transform: translateY(20px) translateX(10px) rotate(-45deg);
+    background-size: cover;
+    position: absolute;
+    z-index: 0;
+}
+
+.message {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+}
+
+.boxInfo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: fit-content;
+    height: 40px;
+}
+
+.btnPause {
+    height: 50px;
+    width: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #2d88ff;
+    cursor: pointer;
+}
+
+.boxVie {
+    width: 200px;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.vie {
+    height: 30px;
+    background-color: #7c4185;
+    border-radius: 5px;
+    transition: 0.25s;
+}
+
+.boxNom {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.boxScore {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.inventaire {
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.case {
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2317099c;
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    border: 4px solid #2E1503;
+}
+
+.caseIcone {
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    font-family: monospace;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+}
+
+.boss {
+    height: 100px;
+    width: 150px;
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.infoBoss {
+    position: absolute;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.vieBossCadre {
+    width: 100px;
+    height: 12px;
+    background-color: black;
+    border: 3px solid black;
+    border-radius: 50px;
+}
+
+.vieBoss {
+    background-color: var(--rose);
+    height: inherit;
+    width: inherit;
+    border-radius: 50px;
+}
+
+@keyframes vibre {
+    0% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    100% { transform: translateX(-4px); }
+}

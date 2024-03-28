@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/logo.png" type="image/png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="autres/fontawesome/css/all.css">
+        <title>Diarrhée Sanglante | Accueil</title>
+    </head>
+    <body>
+        <div class="box-accueil">
+            <h1 class="titre">Diarrhée Sanglante</h1>
+
+            <div class="box-parametre">
+                <div>
+                    <label for="nom">Pseudo:</label>
+                    <input type="text" id="nom" placeholder="Entrez votre pseudo...">
+                </div>
+
+                <div>
+                    <label for="difficulte">Difficulté:</label>
+                    <select id="difficulte">
+                        <option value="facile">Facile</option>
+                        <option value="normal">Normal</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="apparence">Apparence: </label>
+                    <select id="apparence" onclick="choisirApparence();">
+                        <option value="x-wing">X-Wing</option>
+                        <option value="faucon_millenium">Faucon Millenium</option>
+                        <option value="naboo_n-1">Naboo N-1</option>
+                        <option value="venator">Venator</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="contenuApparence">
+                <div class="afficheApparence">
+                    <div id="cadreApparence"></div>
+                </div>
+            </div>
+
+
+            <div style="display: flex;">
+                <button class="btn-jouer" onclick="lancerJeu();">Jouer</button>
+                <button class="btn-jouer" onclick="lancerDuel();">Duel</button>
+            </div>
+
+
+            <div class="parametre" id="parametre">
+                <div class="menu_parametre">
+                    <li><button onclick="activer_desactiver_son();"><i class="fa-solid fa-music"></i></button></li>
+                    <li><a href="https://google.com" target="_blank"><i class="fa-solid fa-phone"></i></a></li>
+                </div>
+                <button class="btn_parametre"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+
+
+        <script>
+            let fondNoir = document.getElementById("accepte");
+            let titreFondNoir = document.getElementById("titre_accepte");
+            let btnFondNoir = document.getElementById("btn_accepte");
+            let parametre = document.getElementById("parametre");
+            let apparence = document.getElementById("apparence");
+            let etat_son = "active";
+            let son = new Audio("son/son_principale.mp3");
+            son.volume = 0.1;
+            son.loop = true;
+            son.play();
+            
+            document.getElementById("nom").value = sessionStorage.getItem("nom");
+
+            document.addEventListener("click", sonOnClick);
+
+
+            function accepte() {
+                fondNoir.style.backgroundColor = "#00000001";
+                titreFondNoir.style.color = "#00000001";
+                btnFondNoir.style.color = "#00000001";
+                btnFondNoir.style.backgroundColor = "#00000001";
+                btnFondNoir.style.border = " 1px solid #00000001";
+
+                setTimeout(() => { son.play(); }, 1000);
+
+                setTimeout(() => {
+                    fondNoir.remove();
+                    parametre.style.zIndex = 10;
+                }, 500);
+            }
+
+            function activer_desactiver_son() {
+                if (etat_son == "active") {
+                    son.pause();
+                    etat_son = "desactive";
+                } else {
+                    son.play();
+                    etat_son = "active";
+                }
+            }
+
+            function lancerJeu() {
+                let nom = document.querySelector("#nom").value;
+                let difficulte = document.querySelector("#difficulte").value;
+                let apparence = document.querySelector("#apparence").value;
+                sessionStorage.setItem("nom", nom);
+                sessionStorage.setItem("difficulte", difficulte);
+                sessionStorage.setItem("apparence", apparence);
+                sessionStorage.setItem("cheminJs", "jeu");
+
+                let fondNoir = document.createElement("div");
+                fondNoir.style.backgroundColor = "#00000000";
+                fondNoir.classList.add("fond_noir");
+                setTimeout(() => {fondNoir.style.backgroundColor = "#000000";}, 10);
+                document.body.appendChild(fondNoir);
+
+                setTimeout(() => {document.location.replace("jeu.html");}, 990);
+            }
+
+            function lancerDuel() {
+                let fondNoir = document.createElement("div");
+                fondNoir.style.backgroundColor = "#00000000";
+                fondNoir.classList.add("fond_noir");
+                setTimeout(() => {fondNoir.style.backgroundColor = "#000000";}, 10);
+                document.body.appendChild(fondNoir);
+                sessionStorage.setItem("cheminJs", "duel");
+
+                setTimeout(() => {document.location.replace("jeu.html");}, 990);
+            }
+
+            function sonOnClick() {
+                let sonClick = new Audio("son/son_click.mp3");
+
+                sonClick.play();
+                sonClick.volume = 0.25;
+            }
+
+            function choisirApparence() {
+                let cadre = document.getElementById("cadreApparence");
+                let apparence = document.querySelector("#apparence").value;
+
+                cadre.style.backgroundImage = "url(img/" + apparence + ".png)";
+            }
+        </script>
+    </body>
+</html>
