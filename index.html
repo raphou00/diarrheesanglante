@@ -50,15 +50,6 @@
                 <button class="btn-jouer" onclick="lancerJeu();">Jouer</button>
                 <button class="btn-jouer" onclick="lancerDuel();">Duel</button>
             </div>
-
-
-            <div class="parametre" id="parametre">
-                <div class="menu_parametre">
-                    <li><button onclick="activer_desactiver_son();"><i class="fa-solid fa-music"></i></button></li>
-                    <li><a href="https://google.com" target="_blank"><i class="fa-solid fa-phone"></i></a></li>
-                </div>
-                <button class="btn_parametre"><i class="fa-solid fa-gear"></i></button>
-            </div>
         </div>
 
 
@@ -66,7 +57,6 @@
             let fondNoir = document.getElementById("accepte");
             let titreFondNoir = document.getElementById("titre_accepte");
             let btnFondNoir = document.getElementById("btn_accepte");
-            let parametre = document.getElementById("parametre");
             let apparence = document.getElementById("apparence");
             let etat_son = "active";
             let son = new Audio("son/son_principale.mp3");
@@ -90,7 +80,6 @@
 
                 setTimeout(() => {
                     fondNoir.remove();
-                    parametre.style.zIndex = 10;
                 }, 500);
             }
 
